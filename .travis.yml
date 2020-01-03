@@ -38,5 +38,5 @@ cache:
     - /C/tools/msys64
 
 script:
-    - mingw32-make src/test.cpp
+    - mingw32-make
     - ls
