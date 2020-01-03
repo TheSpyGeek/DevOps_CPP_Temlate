@@ -8,8 +8,24 @@ project(${PROJECT_NAME})
 
 
 ###### BUILD OPTION #######
+if (CMAKE_GENERATOR MATCHES "Visual Studio")
+    # Do Visual Studio specific stuff
+else()
+    add_definitions(-std=c++11 -pthread)
+    if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
+        message("DEBUG MODE ACTIVATED")
 
-add_definitions(-std=c++11 -pthread)
+        add_definitions(-Wformat -Wall -g)
+
+    endif()
+
+    if("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
+            message("RELEASE MODE ACTIVATED")
+
+            add_definitions(-O3)
+
+    endif()
+endif()
 
 
 # BUILD TYPE = Debug | Release
@@ -18,19 +34,7 @@ if( NOT CMAKE_BUILD_TYPE )
   message("BUILD TYPE = Debug | Release")
 endif()
 
-if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
-        message("DEBUG MODE ACTIVATED")
 
-        add_definitions(-Wformat -Wall -g)
-
-endif()
-
-if("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
-        message("RELEASE MODE ACTIVATED")
-
-        add_definitions(-O3)
-
-endif()
 
 #### SET SOURCES ####
 
