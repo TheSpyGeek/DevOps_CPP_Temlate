@@ -25,15 +25,15 @@ jobs:
       script:
         - cmake --build .
     - stage: build
-      name: "Windows MSV 2013 Build"
+      name: "Windows MVS 2019 Build"
       os: windows
       install:
         - mkdir build && cd build
-        - cmake -G "Visual Studio 12 2013" ..
+        - cmake -G "Visual Studio 16 2019" ..
       script:
         - cmake --build .
     - stage: build
-      name: "Windows MSV 2017 Build"
+      name: "Windows MVS 2017 Build"
       os: windows
       install:
         - mkdir build && cd build
