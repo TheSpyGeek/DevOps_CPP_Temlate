@@ -15,7 +15,7 @@ jobs:
         - mkdir build && cd build
         - cmake ..
       script:
-        - cd build && cmake --build .
+        - cmake --build .
     - stage: build
       name: "MacOS Build"
       os: osx
@@ -23,7 +23,7 @@ jobs:
         - mkdir build && cd build
         - cmake ..
       script:
-        - cd build && cmake --build .
+        - cmake --build .
     - stage: build
       name: "Windows Build"
       os: windows
@@ -31,4 +31,4 @@ jobs:
         - mkdir build && cd build
         - cmake ..
       script:
-        - cd build && cmake --build .
+        - cmake --build .
