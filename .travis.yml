@@ -24,3 +24,11 @@ jobs:
         - cmake ..
       script:
         - cd build && cmake --build .
+    - stage: build
+      name: "Windows Build"
+      os: windows
+      install:
+        - mkdir build && cd build
+        - cmake ..
+      script:
+        - cd build && cmake --build .
