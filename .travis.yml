@@ -25,10 +25,18 @@ jobs:
       script:
         - cmake --build .
     - stage: build
-      name: "Windows Build"
+      name: "Windows MSV 2013 Build"
       os: windows
       install:
         - mkdir build && cd build
-        - cmake ..
+        - cmake -G "Visual Studio 12 2013" ..
+      script:
+        - cmake --build .
+    - stage: build
+      name: "Windows MSV 2017 Build"
+      os: windows
+      install:
+        - mkdir build && cd build
+        - cmake -G "Visual Studio 15 2017" ..
       script:
         - cmake --build .
