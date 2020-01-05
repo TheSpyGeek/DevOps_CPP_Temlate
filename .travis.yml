@@ -28,7 +28,6 @@ jobs:
       name: "Windows MinGW Build"
       os: windows
       install:
-        - choco uninstall -y mingw
         - choco upgrade --no-progress -y msys2
         - export msys2='cmd //C RefreshEnv.cmd '
         - export msys2+='& set MSYS=winsymlinks:nativestrict '
@@ -40,8 +39,11 @@ jobs:
         - taskkill //IM gpg-agent.exe //F  # https://travis-ci.community/t/4967
         - export PATH=/C/tools/msys64/mingw64/bin:$PATH
         - export MAKE=mingw32-make  # so that Autotools can find it
+      install:
+        - mkdir build && cd build
+        - cmake -G "MinGW Makefiles" ..
       script:
-        - echo NICE
+        - cmake --build .
     - stage: build
       name: "Windows MVS 2017 Build"
       os: windows
