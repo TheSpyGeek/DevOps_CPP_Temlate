@@ -71,7 +71,7 @@ jobs:
       script:
         - cmake --build .
     - stage: deploy
-      name: Deploy Test
-      os: linux:
+      name: "Deploy Test"
+      os: linux
       script: echo DEPLOY
 
