@@ -70,4 +70,8 @@ jobs:
         - cmake -G "Visual Studio 15 2017" ..
       script:
         - cmake --build .
+    - stage: deploy
+      name: Deploy Test
+      os: linux:
+      script: echo DEPLOY
 
