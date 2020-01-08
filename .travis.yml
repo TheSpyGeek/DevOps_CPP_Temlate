@@ -81,4 +81,6 @@ jobs:
         file:
           - text.txt
         skip_cleanup: true
+        on:
+          tags: true
 
