@@ -28,9 +28,10 @@ jobs:
         - cmake --build .
     - stage: deploy
       name: "Deploy Test"
-      os: linux
+      os: osx
       before_install: 
         - echo Bonjour > text.txt
       script:
+        - ls
         - cat text.txt
 
