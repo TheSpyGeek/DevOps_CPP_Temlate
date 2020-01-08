@@ -76,9 +76,10 @@ jobs:
       before_deploy: 
         - echo Bonjour > text.txt
       deploy:
-        provider: releases
-        api_key: "7ac002db76dafa7dfffe5a5b36ebd4fb83fbf014"
-        file:
-          - text.txt
+        provider: pages
         skip_cleanup: true
+        github_token: $GITHUB_TOKEN
+        keep_history: true
+        on:
+          branch: stable
 
