@@ -135,6 +135,19 @@ test1/fast:
 .PHONY : test1/fast
 
 #=============================================================================
+# Target rules for targets named test3
+
+# Build rule for target.
+test3: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test3
+.PHONY : test3
+
+# fast build rule for target.
+test3/fast:
+	$(MAKE) -f CMakeFiles/test3.dir/build.make CMakeFiles/test3.dir/build
+.PHONY : test3/fast
+
+#=============================================================================
 # Target rules for targets named DevOps-app
 
 # Build rule for target.
@@ -268,6 +281,33 @@ tests/test2.cpp.s:
 	$(MAKE) -f CMakeFiles/test2.dir/build.make CMakeFiles/test2.dir/tests/test2.cpp.s
 .PHONY : tests/test2.cpp.s
 
+tests/test3.o: tests/test3.cpp.o
+
+.PHONY : tests/test3.o
+
+# target to build an object file
+tests/test3.cpp.o:
+	$(MAKE) -f CMakeFiles/test3.dir/build.make CMakeFiles/test3.dir/tests/test3.cpp.o
+.PHONY : tests/test3.cpp.o
+
+tests/test3.i: tests/test3.cpp.i
+
+.PHONY : tests/test3.i
+
+# target to preprocess a source file
+tests/test3.cpp.i:
+	$(MAKE) -f CMakeFiles/test3.dir/build.make CMakeFiles/test3.dir/tests/test3.cpp.i
+.PHONY : tests/test3.cpp.i
+
+tests/test3.s: tests/test3.cpp.s
+
+.PHONY : tests/test3.s
+
+# target to generate assembly for a file
+tests/test3.cpp.s:
+	$(MAKE) -f CMakeFiles/test3.dir/build.make CMakeFiles/test3.dir/tests/test3.cpp.s
+.PHONY : tests/test3.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -276,10 +316,11 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... test"
 	@echo "... test1"
+	@echo "... test3"
 	@echo "... DevOps-app"
 	@echo "... test2"
-	@echo "... test"
 	@echo "... src/Hello.o"
 	@echo "... src/Hello.i"
 	@echo "... src/Hello.s"
@@ -292,6 +333,9 @@ help:
 	@echo "... tests/test2.o"
 	@echo "... tests/test2.i"
 	@echo "... tests/test2.s"
+	@echo "... tests/test3.o"
+	@echo "... tests/test3.i"
+	@echo "... tests/test3.s"
 .PHONY : help
 
 

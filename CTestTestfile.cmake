@@ -6,3 +6,4 @@
 # testing this directory and lists subdirectories to be tested as well.
 add_test(test1 "./test1")
 add_test(test2 "./test2")
+add_test(test3 "./test3")

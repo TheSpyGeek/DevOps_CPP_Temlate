@@ -1,6 +1,7 @@
 /home/travis/build/TheSpyGeek/DevOps_CPP_Template/CMakeFiles/rebuild_cache.dir
 /home/travis/build/TheSpyGeek/DevOps_CPP_Template/CMakeFiles/edit_cache.dir
+/home/travis/build/TheSpyGeek/DevOps_CPP_Template/CMakeFiles/test.dir
 /home/travis/build/TheSpyGeek/DevOps_CPP_Template/CMakeFiles/test1.dir
+/home/travis/build/TheSpyGeek/DevOps_CPP_Template/CMakeFiles/test3.dir
 /home/travis/build/TheSpyGeek/DevOps_CPP_Template/CMakeFiles/DevOps-app.dir
 /home/travis/build/TheSpyGeek/DevOps_CPP_Template/CMakeFiles/test2.dir
-/home/travis/build/TheSpyGeek/DevOps_CPP_Template/CMakeFiles/test.dir
