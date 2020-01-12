@@ -69,6 +69,8 @@ project(Tests)
 
 
 add_executable(test1 tests/test.cpp)
-add_test(NAME test1 COMMAND ./test1)
 add_executable(test2 tests/test2.cpp)
+add_executable(test3 tests/test3.cpp)
+add_test(NAME test1 COMMAND ./test1)
 add_test(NAME test2 COMMAND ./test2)
+add_test(NAME test3 COMMAND ./test3)
