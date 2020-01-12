@@ -76,12 +76,12 @@ jobs:
       before_deploy: 
         - echo Bonjour > text.txt
       deploy:
-        provider: script
+        provider: pages
         skip_cleanup: true
-        script:
-          - mdkir build && cd build
-          - cmake ..
-          - cmake --build .
+        github_token: $GITHUB_TOKEN
+        keep_history: true
+        file:
+            - DevOps-app
         on:
           branch: stable
 
