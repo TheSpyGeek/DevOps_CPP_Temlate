@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 2.8)
 
 project(${PROJECT_NAME})
 
-
+enable_testing()
 
 ###### BUILD OPTION #######
 if (CMAKE_GENERATOR MATCHES "Visual Studio")
@@ -63,3 +63,10 @@ add_executable(${PROJECT_NAME} ${HEADERS} ${SRCS})
 #)
 
 target_link_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS})
+
+
+project(Test)
+
+
+add_executable(Test tests/test.cpp)
+add_test(NAME mytest COMMAND ./Test)
