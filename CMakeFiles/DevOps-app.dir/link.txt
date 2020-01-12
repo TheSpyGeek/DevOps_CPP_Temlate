@@ -1,0 +1,1 @@
+/usr/bin/g++  -g  -rdynamic CMakeFiles/DevOps-app.dir/src/Hello.cpp.o CMakeFiles/DevOps-app.dir/src/main.cpp.o  -o DevOps-app -ldl 

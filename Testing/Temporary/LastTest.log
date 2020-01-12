@@ -1,0 +1,34 @@
+Start testing: Jan 12 11:25 UTC
+----------------------------------------------------------
+1/2 Testing: test1
+1/2 Test: test1
+Command: "/home/travis/build/TheSpyGeek/DevOps_CPP_Template/test1"
+Directory: /home/travis/build/TheSpyGeek/DevOps_CPP_Template
+"test1" start time: Jan 12 11:25 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test1" end time: Jan 12 11:25 UTC
+"test1" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/2 Testing: test2
+2/2 Test: test2
+Command: "/home/travis/build/TheSpyGeek/DevOps_CPP_Template/test2"
+Directory: /home/travis/build/TheSpyGeek/DevOps_CPP_Template
+"test2" start time: Jan 12 11:25 UTC
+Output:
+----------------------------------------------------------
+Test 2
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test2" end time: Jan 12 11:25 UTC
+"test2" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jan 12 11:25 UTC

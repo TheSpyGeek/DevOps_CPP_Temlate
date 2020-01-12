@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/travis/build/TheSpyGeek/DevOps_CPP_Template/src/Hello.cpp
+Hello.h
+/home/travis/build/TheSpyGeek/DevOps_CPP_Template/src/Hello.h
+iostream
+-
+
+/home/travis/build/TheSpyGeek/DevOps_CPP_Template/src/Hello.h
+
+/home/travis/build/TheSpyGeek/DevOps_CPP_Template/src/main.cpp
+Hello.h
+/home/travis/build/TheSpyGeek/DevOps_CPP_Template/src/Hello.h
+iostream
+-
+
