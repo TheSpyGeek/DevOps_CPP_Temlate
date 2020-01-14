@@ -65,12 +65,25 @@ add_executable(${PROJECT_NAME} ${HEADERS} ${SRCS})
 target_link_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS})
 
 
-project(Tests)
+ADD_CUSTOM_TARGET(run COMMAND "./${PROJECT_NAME}"
+  COMMENT "Run with ${CMAKE_BUILD_TYPE} configuration"
+  DEPENDS ${PROJECT_NAME}
+)
 
+file(GLOB_RECURSE TEST_FILES
+	tests/*.cpp
+)
 
-add_executable(test1 tests/test.cpp)
-add_executable(test2 tests/test2.cpp)
-add_executable(test3 tests/test3.cpp)
-add_test(NAME test1 COMMAND ./test1)
-add_test(NAME test2 COMMAND ./test2)
-add_test(NAME test3 COMMAND ./test3)
+foreach(file ${TEST_FILES})
+    add_executable(${file} ${file})
+    add_test(NAME ${file} COMMAND "./${file}")
+endforeach(file)
+
+#add_executable(test1exe tests/test.cpp)
+#add_executable(test2exe tests/test2.cpp)
+#add_executable(test3exe tests/test3.cpp)
+
+#add_test(NAME test1 COMMAND ./test1exe DEPENDS test1exe)
+#add_test(NAME test2 COMMAND ./test2exe)
+#add_test(NAME test3 COMMAND ./test3exe)
+

@@ -5,6 +5,7 @@
 int main() {
 
 	Hello h1;
+	Hello h2;
 
 	h1.print();
 
