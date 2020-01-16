@@ -84,13 +84,11 @@ file(GLOB_RECURSE TEST_FILES
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/${TESTS_BUILD_DIRECTORY})
 
 foreach(file ${TEST_FILES})
-    get_filename_component(basename ${file} NAME )
     get_filename_component(basenameWE ${file} NAME_WE )
     
     
     add_executable(${TESTS_BUILD_DIRECTORY}/${basenameWE} ${file})
-    #add_test(NAME ${basenameWE} COMMAND "./${basenameWE}")
-    message(${basename})
+    add_test(NAME ${basenameWE} COMMAND "${TESTS_BUILD_DIRECTORY}/${basenameWE}")
 endforeach(file)
 
 #add_executable(test1exe tests/test.cpp)
