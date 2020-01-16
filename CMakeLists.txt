@@ -3,6 +3,8 @@ set(PROJECT_NAME DevOps-app)
 cmake_minimum_required(VERSION 2.8)
 
 
+set(TESTS_BUILD_DIRECTORY buildtests)
+
 project(${PROJECT_NAME})
 
 enable_testing()
@@ -66,20 +68,30 @@ add_executable(${PROJECT_NAME} src/main.cpp)
 
 target_link_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS} compiledSRC)
 
+# Ajout de la commande run
 
 ADD_CUSTOM_TARGET(run COMMAND "./${PROJECT_NAME}"
   COMMENT "Run with ${CMAKE_BUILD_TYPE} configuration"
   DEPENDS ${PROJECT_NAME}
 )
 
+# Compilation des tests
+
 file(GLOB_RECURSE TEST_FILES
 	tests/*.cpp
 )
 
-#foreach(file ${TEST_FILES})
-#    add_executable(${file} ${file})
-#    add_test(NAME ${file} COMMAND "./${file}")
-#endforeach(file)
+file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/${TESTS_BUILD_DIRECTORY})
+
+foreach(file ${TEST_FILES})
+    get_filename_component(basename ${file} NAME )
+    get_filename_component(basenameWE ${file} NAME_WE )
+    
+    
+    add_executable(${TESTS_BUILD_DIRECTORY}/${basenameWE} ${file})
+    #add_test(NAME ${basenameWE} COMMAND "./${basenameWE}")
+    message(${basename})
+endforeach(file)
 
 #add_executable(test1exe tests/test.cpp)
 #add_executable(test2exe tests/test2.cpp)
