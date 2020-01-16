@@ -45,6 +45,8 @@ file(GLOB_RECURSE SRCS
 	src/*.cpp
 )
 
+list(REMOVE_ITEM SRCS src/main.cpp)
+
 # SRCS prends la valeur des headers
 file(GLOB_RECURSE HEADERS
 	src/*.h
@@ -54,15 +56,15 @@ file(GLOB_RECURSE HEADERS
 
 
 
+add_library(compiledSRC ${SRCS})
 
-
-add_executable(${PROJECT_NAME} ${HEADERS} ${SRCS})
+add_executable(${PROJECT_NAME} src/main.cpp)
 
 # ajout des includes directory
 #include_directories(
 #)
 
-target_link_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS})
+target_link_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS} compiledSRC)
 
 
 ADD_CUSTOM_TARGET(run COMMAND "./${PROJECT_NAME}"
@@ -74,10 +76,10 @@ file(GLOB_RECURSE TEST_FILES
 	tests/*.cpp
 )
 
-foreach(file ${TEST_FILES})
-    add_executable(${file} ${file})
-    add_test(NAME ${file} COMMAND "./${file}")
-endforeach(file)
+#foreach(file ${TEST_FILES})
+#    add_executable(${file} ${file})
+#    add_test(NAME ${file} COMMAND "./${file}")
+#endforeach(file)
 
 #add_executable(test1exe tests/test.cpp)
 #add_executable(test2exe tests/test2.cpp)
