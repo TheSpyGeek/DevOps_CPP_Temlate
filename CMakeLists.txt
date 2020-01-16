@@ -5,6 +5,8 @@ cmake_minimum_required(VERSION 2.8)
 
 set(TESTS_BUILD_DIRECTORY buildtests)
 
+set(LIBRARY_TMP compiledSRC)
+
 project(${PROJECT_NAME})
 
 enable_testing()
@@ -58,7 +60,7 @@ file(GLOB_RECURSE HEADERS
 
 
 
-add_library(compiledSRC ${SRCS})
+add_library(${LIBRARY_TMP} ${SRCS})
 
 add_executable(${PROJECT_NAME} src/main.cpp)
 
@@ -66,7 +68,7 @@ add_executable(${PROJECT_NAME} src/main.cpp)
 #include_directories(
 #)
 
-target_link_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS} compiledSRC)
+target_link_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS} ${LIBRARY_TMP})
 
 # Ajout de la commande run
 
@@ -81,15 +83,22 @@ file(GLOB_RECURSE TEST_FILES
 	tests/*.cpp
 )
 
+set(TESTPREFIX test_)
+
+# Fait en sorte que la commande test depend de la compilation de la lib
+add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} DEPENDS ${LIBRARY_TMP})
+
+# Creation du dossier de binaire des tests
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/${TESTS_BUILD_DIRECTORY})
 
 foreach(file ${TEST_FILES})
-    get_filename_component(basenameWE ${file} NAME_WE )
-    
+    get_filename_component(basenameWE ${file} NAME_WE ) # récupération du basename du fichier sans l'extension
     
     add_executable(${TESTS_BUILD_DIRECTORY}/${basenameWE} ${file})
-    add_test(NAME ${basenameWE} COMMAND "${TESTS_BUILD_DIRECTORY}/${basenameWE}")
+    add_test(NAME "${TESTPREFIX}${basenameWE}" COMMAND "${TESTS_BUILD_DIRECTORY}/${basenameWE}")
 endforeach(file)
+
+
 
 #add_executable(test1exe tests/test.cpp)
 #add_executable(test2exe tests/test2.cpp)
