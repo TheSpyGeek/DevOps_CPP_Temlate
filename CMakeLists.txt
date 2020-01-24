@@ -94,7 +94,7 @@ file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/${TESTS_BUILD_DIRECTORY})
 foreach(file ${TEST_FILES})
     get_filename_component(basenameWE ${file} NAME_WE ) # récupération du basename du fichier sans l'extension
     
-    add_executable(${TESTS_BUILD_DIRECTORY}/${basenameWE} ${file})
+    add_executable(${TESTS_BUILD_DIRECTORY}/${basenameWE} ${file} ${LIBRARY_TMP})
     add_test(NAME "${TESTPREFIX}${basenameWE}" COMMAND "${TESTS_BUILD_DIRECTORY}/${basenameWE}")
 endforeach(file)
 
