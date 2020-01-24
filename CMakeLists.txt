@@ -3,10 +3,6 @@ set(PROJECT_NAME DevOps-app)
 cmake_minimum_required(VERSION 2.8)
 
 
-set(TESTS_BUILD_DIRECTORY buildtests)
-
-set(LIBRARY_TMP compiledSRC)
-
 project(${PROJECT_NAME})
 
 enable_testing()
@@ -49,7 +45,7 @@ file(GLOB_RECURSE SRCS
 	src/*.cpp
 )
 
-list(REMOVE_ITEM SRCS src/main.cpp)
+# list(REMOVE_ITEM SRCS src/main.cpp)
 
 # SRCS prends la valeur des headers
 file(GLOB_RECURSE HEADERS
@@ -60,51 +56,25 @@ file(GLOB_RECURSE HEADERS
 
 
 
-add_library(${LIBRARY_TMP} ${SRCS})
 
-add_executable(${PROJECT_NAME} src/main.cpp)
+add_executable(${PROJECT_NAME}_run ${SRCS})
+add_library(${PROJECT_NAME}_lib ${SRCS})
 
 # ajout des includes directory
 #include_directories(
 #)
 
-target_link_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS} ${LIBRARY_TMP})
+target_link_libraries(${PROJECT_NAME}_run ${CMAKE_DL_LIBS})
+target_link_libraries(${PROJECT_NAME}_lib ${CMAKE_DL_LIBS})
 
 # Ajout de la commande run
 
-ADD_CUSTOM_TARGET(run COMMAND "./${PROJECT_NAME}"
+ADD_CUSTOM_TARGET(run COMMAND "./${PROJECT_NAME}_run"
   COMMENT "Run with ${CMAKE_BUILD_TYPE} configuration"
-  DEPENDS ${PROJECT_NAME}
+  DEPENDS ${PROJECT_NAME}_run
 )
 
 # Compilation des tests
 
-file(GLOB_RECURSE TEST_FILES
-	tests/*.cpp
-)
-
-set(TESTPREFIX test_)
-
-# Fait en sorte que la commande test depend de la compilation de la lib
-add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} DEPENDS ${LIBRARY_TMP})
-
-# Creation du dossier de binaire des tests
-file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/${TESTS_BUILD_DIRECTORY})
-
-foreach(file ${TEST_FILES})
-    get_filename_component(basenameWE ${file} NAME_WE ) # récupération du basename du fichier sans l'extension
-    
-    add_executable(${TESTS_BUILD_DIRECTORY}/${basenameWE} ${file} ${LIBRARY_TMP})
-    add_test(NAME "${TESTPREFIX}${basenameWE}" COMMAND "${TESTS_BUILD_DIRECTORY}/${basenameWE}")
-endforeach(file)
-
-
-
-#add_executable(test1exe tests/test.cpp)
-#add_executable(test2exe tests/test2.cpp)
-#add_executable(test3exe tests/test3.cpp)
-
-#add_test(NAME test1 COMMAND ./test1exe DEPENDS test1exe)
-#add_test(NAME test2 COMMAND ./test2exe)
-#add_test(NAME test3 COMMAND ./test3exe)
-
+add_subdirectory(lib/googletest)
+add_subdirectory(tests)
